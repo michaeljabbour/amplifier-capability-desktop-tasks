@@ -12,3 +12,5 @@ build/
 .pyright/
 *.so
 *.dylib
+
+_site/

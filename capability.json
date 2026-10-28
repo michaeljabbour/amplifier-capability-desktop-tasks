@@ -1,0 +1,83 @@
+{
+  "id": "desktop-tasks",
+  "display_name": "Desktop Tasks",
+  "kind": "skill",
+  "promise": "Complete a bounded desktop task through observed controls and verify the resulting state.",
+  "audience": "People and agents operating desktop applications.",
+  "trigger": "Operate an application through an available computer-use surface.",
+  "skill_path": "skills/desktop-tasks",
+  "modes": [
+    {
+      "name": "Plan",
+      "when": "The task spans several app states.",
+      "output": "An observable target and bounded action plan."
+    },
+    {
+      "name": "Operate",
+      "when": "The target and authorization are clear.",
+      "output": "Observed actions with post-state evidence."
+    },
+    {
+      "name": "Recover",
+      "when": "The action result is ambiguous or blocked.",
+      "output": "A fresh observation, safe recovery or explicit stop."
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fictional worked example",
+      "brief": "A fictional task illustrating Desktop Tasks.",
+      "before": "An automation clicks a remembered button location and assumes a form saved.",
+      "after": "A fresh labeled target and the saved-state confirmation establish what changed.",
+      "why": "Observed post-state separates an attempted interaction from completed work.",
+      "fictional": true
+    }
+  ],
+  "boundaries": [
+    "Real desktop execution requires an available host tool and platform permissions; the fixture is a simulation."
+  ],
+  "install_commands": [
+    "python3 scripts/capability.py install --dest ~/.agents/skills"
+  ],
+  "runtime_install_commands": [
+    "python3 -m pip install ./modules/tool-cua"
+  ],
+  "verification": [
+    {
+      "name": "Functional acceptance",
+      "command": "python3 scripts/functional_gate.py",
+      "expected": "Supplied fictional tasks exercise actual mechanisms and failure boundaries.",
+      "status": "passed",
+      "evidence": "143 native tests passed; fixture/backend tests do not establish OS permission or live task acceptance."
+    },
+    {
+      "name": "Native host acceptance",
+      "command": "See retained source integration guide",
+      "expected": "Actual provider/host/desktop/daemon/runner acceptance for the selected adapter.",
+      "status": "not-run",
+      "evidence": "No live model, real desktop transaction, invitation, deployment or production data migration was performed by this functional baseline."
+    }
+  ],
+  "sources": [
+    {
+      "repo": "amplifier-bundle-cua",
+      "commit": "403dfecb8bc86c78d2b71991dc0d458a2e192887",
+      "paths": [
+        "context/dual-world-reasoning.md",
+        "context/action-confidence.md",
+        "context/recovery-patterns.md",
+        "agents",
+        "modules",
+        "context"
+      ],
+      "license": "MIT",
+      "role": "Primary retained owner history, mechanisms and records; portable method consolidates the listed entry points."
+    }
+  ],
+  "consolidation": [
+    "One portable method entry with mode references; original native engines, agents and records retained as optional adapters."
+  ],
+  "docs": [
+    "docs/CONSOLIDATION.md"
+  ]
+}

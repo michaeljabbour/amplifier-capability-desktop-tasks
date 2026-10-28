@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "status": "local-functional-baseline",
+  "source_commit": "403dfecb8bc86c78d2b71991dc0d458a2e192887",
+  "python": "3.12.5",
+  "fixture_content": "fictional",
+  "model_calls": 0,
+  "notes": "143 native tests passed; fixture/backend tests do not establish OS permission or live task acceptance.",
+  "limitations": [
+    "Real desktop execution requires an available host tool and platform permissions; the fixture is a simulation."
+  ],
+  "files": {
+    "native.log": "e6f4415d7572a01683ebcbe8d8d694da72df2dc678648443219ba7cd87b57dcd",
+    "functional.log": "080643ba10ae34068a59be8b63a503359d9dded3f9b44fdfd37c55abb2812452"
+  }
+}

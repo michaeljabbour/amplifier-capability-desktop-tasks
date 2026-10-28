@@ -1,4 +1,14 @@
-# amplifier-bundle-cua
+# Desktop Tasks
+
+Complete a bounded desktop task through observed controls and verify the resulting state.
+
+## Consolidated capability
+
+Portable method: [skills/desktop-tasks/SKILL.md](skills/desktop-tasks/SKILL.md). Install with `python3 scripts/capability.py install --dest ~/.agents/skills`. See [consolidation and runtime boundaries](docs/CONSOLIDATION.md). The retained source guide below documents the optional original host integration and historical evidence; it is not a new outcome claim.
+
+## Retained source guide
+
+### amplifier-bundle-cua
 
 Amplifier bundle for computer-use automation — universal desktop control, semantic UI understanding, and safe bounded operation.
 
