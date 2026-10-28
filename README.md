@@ -1,10 +1,53 @@
 # Desktop Tasks
 
-Complete a bounded desktop task through observed controls and verify the resulting state.
+Finish the task. Check the screen that proves it.
 
-## Consolidated capability
+For people asking an agent to work in desktop apps. Desktop Tasks makes the agent use observed controls, stay within a clear action budget and verify the final state before calling the work complete.
 
-Portable method: [skills/desktop-tasks/SKILL.md](skills/desktop-tasks/SKILL.md). Install with `python3 scripts/capability.py install --dest ~/.agents/skills`. See [consolidation and runtime boundaries](docs/CONSOLIDATION.md). The retained source guide below documents the optional original host integration and historical evidence; it is not a new outcome claim.
+[Explore the site](https://michaeljabbour.github.io/amplifier-skill-desktop-tasks/)
+
+## What you get
+
+- **Know whether it worked.** Separate a click that was attempted from a change that was actually visible afterward.
+- **Recover from uncertain screens.** Re-observe when labels and pixels disagree, and stop repeated actions from compounding an ambiguous result.
+- **Use the tools you already have.** Apply the method through an available host computer-use tool; install the native adapter only if needed.
+
+## Start here
+
+```sh
+git clone https://github.com/michaeljabbour/amplifier-skill-desktop-tasks.git
+cd amplifier-skill-desktop-tasks
+python3 scripts/capability.py install --dest ~/.agents/skills
+```
+
+This installs the portable method and its packaged references into your agent skill folder. If your host uses another folder, pass that path to `--dest`. Start a new session or use your host’s skill refresh so it can discover the installed skill. Optional native tools are installed separately.
+
+Try this first task:
+
+> Use Desktop Tasks to change the sort order in a fictional task app to newest first. First name the visible success condition. Use fresh observed controls, verify the resulting order and report any step you cannot confirm.
+
+## What you need
+
+- Python 3.11 or later for the portable install helper.
+- The method needs an agent host with computer-use tools and the necessary OS permissions.
+- The optional tool-cua package supplies platform backends; fixture tests alone do not establish live desktop access.
+- Installing the skill does not change application state.
+
+For the optional native interface, use a project virtual environment:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install ./modules/tool-cua
+```
+
+## Evidence and limits
+
+Native backend and fixture checks cover action plumbing and recovery logic. Live OS permissions and a successful task in your selected application remain a separate check.
+
+The worked examples on the site are fictional. They illustrate the output and decisions; they are not user results or measured benefit. See [consolidation and runtime boundaries](docs/CONSOLIDATION.md) for retained interfaces and acceptance scope.
+
+---
 
 ## Retained source guide
 
@@ -13,7 +56,7 @@ Portable method: [skills/desktop-tasks/SKILL.md](skills/desktop-tasks/SKILL.md).
 Amplifier bundle for computer-use automation — universal desktop control, semantic UI understanding, and safe bounded operation.
 
 **Bundle namespace:** `cua`  
-**Git source:** `git+https://github.com/michaeljabbour/amplifier-bundle-cua@main`
+**Git source:** `git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@main`
 
 ---
 
@@ -60,7 +103,7 @@ Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.11.
 
 ```bash
 # Clone the repo
-git clone https://github.com/michaeljabbour/amplifier-bundle-cua
+git clone https://github.com/michaeljabbour/amplifier-skill-desktop-tasks
 cd amplifier-bundle-cua
 
 # Install all dev dependencies (workspace-aware)
@@ -146,7 +189,7 @@ amplifier run --bundle "file://$REPO" ...
 Once the bundle is pushed to GitHub, you can load it directly:
 
 ```bash
-amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-bundle-cua@main ...
+amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@main ...
 ```
 
 Use the same `.amplifier/settings.local.yaml` from the section above to activate the fixture backend:
@@ -189,7 +232,7 @@ If `uv sync` cannot resolve `tool-cua`, verify that `modules/tool-cua/pyproject.
 Append `@<branch-or-sha>` to the git URL:
 
 ```bash
-amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-bundle-cua@my-branch ...
+amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@my-branch ...
 ```
 
 ---

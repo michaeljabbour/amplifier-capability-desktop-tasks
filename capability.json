@@ -25,8 +25,8 @@
   ],
   "examples": [
     {
-      "title": "Fictional worked example",
-      "brief": "A fictional task illustrating Desktop Tasks.",
+      "title": "Confirm a changed sort order",
+      "brief": "Use Desktop Tasks to change the sort order in a fictional task app to newest first. First name the visible success condition. Use fresh observed controls, verify the resulting order and report any step you cannot confirm.",
       "before": "An automation clicks a remembered button location and assumes a form saved.",
       "after": "A fresh labeled target and the saved-state confirmation establish what changed.",
       "why": "Observed post-state separates an attempted interaction from completed work.",
@@ -80,5 +80,58 @@
   "docs": [
     "docs/CONSOLIDATION.md"
   ],
-  "publication_status": "Installation and evidence scopes are documented below."
+  "publication_status": "Installation and evidence scopes are documented below.",
+  "marketing": {
+    "headline": "Finish the task. Check the screen that proves it.",
+    "lead": "For people asking an agent to work in desktop apps. Desktop Tasks makes the agent use observed controls, stay within a clear action budget and verify the final state before calling the work complete.",
+    "benefits": [
+      {
+        "title": "Know whether it worked",
+        "body": "Separate a click that was attempted from a change that was actually visible afterward."
+      },
+      {
+        "title": "Recover from uncertain screens",
+        "body": "Re-observe when labels and pixels disagree, and stop repeated actions from compounding an ambiguous result."
+      },
+      {
+        "title": "Use the tools you already have",
+        "body": "Apply the method through an available host computer-use tool; install the native adapter only if needed."
+      }
+    ],
+    "walkthrough": [
+      {
+        "title": "Name the finish line",
+        "detail": "Specify the application, authorized change and visible state that would establish success."
+      },
+      {
+        "title": "Operate from fresh evidence",
+        "detail": "Identify a labeled control, compare it with the current screen and act through the host tool."
+      },
+      {
+        "title": "Verify or recover",
+        "detail": "Read the resulting state. Refresh an uncertain step within the agreed budget and report partial completion plainly."
+      }
+    ],
+    "use_when": [
+      "You need an agent to complete a bounded task in a desktop application.",
+      "A click can succeed without saving the intended change.",
+      "A workflow needs explicit recovery and stop conditions."
+    ],
+    "not_for": [
+      "Granting desktop permissions or supplying a missing computer-use tool.",
+      "Blind replay of remembered coordinates."
+    ],
+    "quickstart_prompt": "Use Desktop Tasks to change the sort order in a fictional task app to newest first. First name the visible success condition. Use fresh observed controls, verify the resulting order and report any step you cannot confirm.",
+    "output_preview": "Task: show newest items first\nObserved: sort menu offers “Newest first”\nAttempted: selected that option\nVerified: selected label changed; top item has the newest date\nRemaining: none within this bounded task\n\nIf the list did not change: refresh the observation before another action.",
+    "example_note": "Fictional interaction receipt. No real application was operated to create this illustration.",
+    "install_notes": [
+      "Python 3.11 or later is required by the portable install/build helper. The installed method runs through your agent host.",
+      "The method needs an agent host with computer-use tools and the necessary OS permissions.",
+      "The optional tool-cua package supplies platform backends; fixture tests alone do not establish live desktop access.",
+      "Installing the skill does not change application state."
+    ],
+    "proof_summary": "Native backend and fixture checks cover action plumbing and recovery logic. Live OS permissions and a successful task in your selected application remain a separate check.",
+    "next_step": "Choose one small app task with an unmistakable visible finish line."
+  },
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-desktop-tasks"
 }
