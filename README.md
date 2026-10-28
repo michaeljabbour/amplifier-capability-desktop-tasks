@@ -104,7 +104,7 @@ Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.11.
 ```bash
 # Clone the repo
 git clone https://github.com/michaeljabbour/amplifier-skill-desktop-tasks
-cd amplifier-bundle-cua
+cd amplifier-skill-desktop-tasks
 
 # Install all dev dependencies (workspace-aware)
 uv sync --group dev
