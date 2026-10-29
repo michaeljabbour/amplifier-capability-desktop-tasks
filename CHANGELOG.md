@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-29 — Guide consistency
+
+- Keep portable skill installation primary and move the retained native Amplifier bundle setup into a clearly optional adapter guide, preserving its useful instructions.
+- Preserve the canonical method, native implementation and film assets.
+
+
 ## 2026-10-28 — Canonical clone path
 
 - Make the retained native setup enter the directory created by the canonical public clone.
