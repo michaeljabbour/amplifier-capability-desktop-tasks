@@ -134,5 +134,12 @@
     "proof_summary": "Native backend and fixture checks cover action plumbing and recovery logic. Live OS permissions and a successful task in your selected application remain a separate check.",
     "next_step": "Choose one small app task with an unmistakable visible finish line."
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-desktop-tasks"
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-desktop-tasks",
+  "film": {
+    "file": "desktop-tasks-film",
+    "seconds": 72,
+    "heading": "A click is not a change.",
+    "blurb": "In 72 seconds, an agent clicks where the menu was yesterday and says done, while Dunn the bobblehead nods and the list never moves. Desktop Tasks names the finish line before the first click, reads the screen two ways and acts when they agree, then looks again for proof. When a success shows no visible change, it looks twice at most, then stops and tells you. Captions are on the player; a transcript is below.",
+    "note": "The task app and its list are a fictional example. The film shows how the skill behaves; it does not report results."
+  }
 }

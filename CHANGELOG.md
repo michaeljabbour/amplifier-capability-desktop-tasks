@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-29 — Film
+
+- Add a 72-second film to the site, with captions, a transcript, a poster and a 15-second cut. The example in it is fictional, and it reports no results.
+
 ## 2026-10-29 — Guide consistency
 
 - Keep portable skill installation primary and move the retained native Amplifier bundle setup into a clearly optional adapter guide, preserving its useful instructions.

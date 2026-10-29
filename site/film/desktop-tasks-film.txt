@@ -1,0 +1,10 @@
+You ask your agent to sort a list, newest first. Dunn nods at anything.
+The agent clicks where the menu was yesterday.
+It says done. Dunn nods. The list hasn’t moved.
+Desktop Tasks names the finish line before the first click.
+It reads the screen two ways, picture and labelled controls, and acts when they agree.
+It looks again. The newest task is on top, and the receipt says how it knows.
+Success with no visible change is ambiguous. It looks twice at most, then stops and tells you.
+It needs a computer-use tool and your permission. Its tests ran on a pretend desktop.
+On screen: A click is not a change.
+Desktop Tasks. Finish the task. Check the screen that proves it.
