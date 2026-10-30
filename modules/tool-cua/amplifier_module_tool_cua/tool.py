@@ -82,6 +82,16 @@ class CuaTool:
 
     async def execute(self, arguments: dict[str, Any], **kwargs: Any) -> dict[str, Any]:
         """Dispatch to the appropriate action handler."""
+        result = await self._dispatch(arguments)
+        return self._with_provenance(result)
+
+    def _with_provenance(self, result: dict[str, Any]) -> dict[str, Any]:
+        """Stamp every result with the backend that produced it and whether it was simulated."""
+        result["backend"] = getattr(self._backend, "platform", "unknown")
+        result["simulated"] = bool(getattr(self._backend, "simulated", False))
+        return result
+
+    async def _dispatch(self, arguments: dict[str, Any]) -> dict[str, Any]:
         action = arguments.get("action", "")
 
         try:
@@ -145,27 +155,47 @@ class CuaTool:
             return {"status": "failure", "message": str(exc), "data": {}}
 
     async def _handle_observe(self) -> dict[str, Any]:
-        """Composite observe: screenshot + cursor + windows + semantic tree."""
+        """Combine observations without disguising missing or failed components.
+
+        The normalized status remains one of the existing ActionStatus values.
+        Mixed results are ambiguous with partial=True; individual outcomes and
+        successful payloads are retained so callers can decide what is usable.
+        """
         data: dict[str, Any] = {}
+        observations: dict[str, dict[str, str]] = {}
 
-        screenshot = await self._backend.screenshot()
-        if screenshot.status.value == "success":
-            data["screenshot_base64"] = screenshot.data.get("screenshot_base64")
+        for name in ("screenshot", "cursor_position", "window_info", "semantic_tree"):
+            try:
+                result = await getattr(self._backend, name)()
+                observations[name] = {"status": result.status.value, "message": result.message}
+                if result.status.value != "success":
+                    continue
+                if name == "screenshot":
+                    data["screenshot_base64"] = result.data.get("screenshot_base64")
+                elif name == "cursor_position":
+                    data["cursor"] = result.data
+                elif name == "window_info":
+                    data["windows"] = result.data.get("windows", [])
+                    data["focused_window"] = result.data.get("focused_window")
+                else:
+                    data["semantic_tree"] = result.data.get("elements", [])
+            except Exception as exc:
+                logger.exception("CuaTool observation '%s' raised", name)
+                observations[name] = {"status": "failure", "message": str(exc)}
 
-        cursor = await self._backend.cursor_position()
-        if cursor.status.value == "success":
-            data["cursor"] = cursor.data
-
-        windows = await self._backend.window_info()
-        if windows.status.value == "success":
-            data["windows"] = windows.data.get("windows", [])
-            data["focused_window"] = windows.data.get("focused_window")
-
-        semantic = await self._backend.semantic_tree()
-        if semantic.status.value == "success":
-            data["semantic_tree"] = semantic.data.get("elements", [])
-
-        return {"status": "success", "data": data, "message": ""}
+        succeeded = sum(item["status"] == "success" for item in observations.values())
+        partial = 0 < succeeded < len(observations)
+        if succeeded == len(observations):
+            status, message = "success", ""
+        elif partial:
+            status = "ambiguous"
+            message = f"Partial observation ({succeeded}/4 succeeded); see observations."
+        elif all(item["status"] == "blocked" for item in observations.values()):
+            status, message = "blocked", "Observation blocked (0/4 succeeded); see observations."
+        else:
+            status, message = "failure", "Observation unavailable (0/4 succeeded); see observations."
+        return {"status": status, "data": data, "message": message,
+                "partial": partial, "observations": observations}
 
     @staticmethod
     def _to_dict(result: Any) -> dict[str, Any]:

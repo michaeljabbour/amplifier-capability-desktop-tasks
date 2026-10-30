@@ -15,7 +15,11 @@ async def mount(coordinator: Any, config: dict[str, Any] | None = None) -> None:
 
     Config options:
         backend: Force a specific backend. Values: "fixture", "auto" (default).
-                 "auto" detects the current platform and picks the best backend.
+                 "auto" detects the current platform and uses its native backend;
+                 it raises BackendUnavailableError rather than silently using the
+                 simulated fixture. The fixture is used only when requested
+                 explicitly (backend: fixture, or AMPLIFIER_CUA_BACKEND=fixture).
+                 Every action result carries "backend" and "simulated" fields.
     """
     from .backends.registry import get_backend
     from .tool import CuaTool

@@ -117,6 +117,16 @@ uv run pyright
 
 ---
 
+## Backend selection and provenance
+
+`backend: auto` uses the native platform backend and raises an error when it
+cannot initialize; it never silently substitutes the fixture. Request the
+simulator explicitly with `backend: fixture` or `AMPLIFIER_CUA_BACKEND=fixture`.
+Every action result identifies its `backend` and whether it was `simulated`.
+Composite `observe` results retain each component's status: a partly available
+snapshot is `ambiguous` with `partial: true`, while a wholly unavailable snapshot
+is `failure` or `blocked`. Fixture success is evidence of simulated action only.
+
 ## Smoke test — local clone with fixture backend
 
 The fixture backend runs without any real desktop/OS access, making it safe for CI and quick validation.

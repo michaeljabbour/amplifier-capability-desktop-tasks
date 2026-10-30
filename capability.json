@@ -123,7 +123,7 @@
       "Blind replay of remembered coordinates."
     ],
     "quickstart_prompt": "Use Desktop Tasks to change the sort order in a fictional task app to newest first. First name the visible success condition. Use fresh observed controls, verify the resulting order and report any step you cannot confirm.",
-    "output_preview": "Task: show newest items first\nObserved: sort menu offers “Newest first”\nAttempted: selected that option\nVerified: selected label changed; top item has the newest date\nRemaining: none within this bounded task\n\nIf the list did not change: refresh the observation before another action.",
+    "output_preview": "Task: show newest items first\nObserved: sort menu offers \u201cNewest first\u201d\nAttempted: selected that option\nVerified: selected label changed; top item has the newest date\nRemaining: none within this bounded task\n\nIf the list did not change: refresh the observation before another action.",
     "example_note": "Fictional interaction receipt. No real application was operated to create this illustration.",
     "install_notes": [
       "Python 3.11 or later is required by the portable install/build helper. The installed method runs through your agent host.",
@@ -134,12 +134,91 @@
     "proof_summary": "Native backend and fixture checks cover action plumbing and recovery logic. Live OS permissions and a successful task in your selected application remain a separate check.",
     "next_step": "Choose one small app task with an unmistakable visible finish line."
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-desktop-tasks",
+  "repository_url": "https://github.com/michaeljabbour/amplifier-capability-desktop-tasks",
+  "name": "amplifier-capability-desktop-tasks",
+  "legacy_names": [
+    "amplifier-skill-desktop-tasks",
+    "desktop-tasks"
+  ],
+  "contract_version": "amplifier-capability/v1",
+  "version": "0.1.0",
+  "version_basis": "Existing release metadata",
+  "engine": "LLM",
+  "engine_components": {
+    "caller_method": "LLM"
+  },
+  "surfaces": [
+    "agent-skills",
+    "amplifier-bundle",
+    "python-library"
+  ],
+  "portable_method": {
+    "name": "desktop-tasks",
+    "path": "skills/desktop-tasks",
+    "include": [
+      "."
+    ],
+    "contract": "Agent Skills directory; caller applies the method; no independent execution loop is installed."
+  },
+  "interfaces": {
+    "portable": {
+      "input": "Caller task and explicitly authorized context",
+      "output": "Complete a bounded desktop task through observed controls and verify the resulting state.",
+      "failure": "Report insufficient evidence, unsupported context or host limitation; never turn discovery into an execution claim."
+    },
+    "native": {
+      "distribution": "amplifier-bundle-cua",
+      "entrypoints": {},
+      "docs": [
+        "docs/CONSOLIDATION.md",
+        "docs/NATIVE-README.md"
+      ],
+      "status": "Existing declared entrypoints preserved; runtime signatures, service access and installation tests remain separate evidence."
+    },
+    "host_adapters": {
+      "amplifier_bundle": "bundle.md",
+      "grants_autonomy": false
+    }
+  },
+  "permissions": {
+    "installation": {
+      "network": false,
+      "executes_capability_code": false,
+      "writes": [
+        "Selected discovery folders",
+        ".capability-state transaction backups"
+      ],
+      "grants_runtime_permissions": false
+    },
+    "runtime": {
+      "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
+      "declared_boundaries": [
+        "Real desktop execution requires an available host tool and platform permissions; the fixture is a simulation."
+      ]
+    },
+    "secret_names": {
+      "discovery_requires": [],
+      "native_runtime_inventory": "See native documentation; no credentials are bundled or inferred."
+    }
+  },
+  "dataflow": {
+    "installation": "Read pinned tracked portable source and copy locally with SHA-256 receipts. No source text is transmitted.",
+    "method": "Caller supplies authorized context; existing promise and boundaries govern output.",
+    "native_runtime": "Provider/network/storage flows are owned by native interfaces and host authorization; these files do not enable them."
+  },
+  "source_policy": {
+    "revision": "Explicit full40-character Git commit required at installation; never infer latest.",
+    "repository_rename": "Public identity may change; skill folder, imports, entrypoints, tool IDs and schemas remain stable.",
+    "research": ".research/market remains local and ignored; AGENTS governs refresh."
+  },
   "film": {
     "file": "desktop-tasks-film",
     "seconds": 72,
     "heading": "A click is not a change.",
     "blurb": "In 72 seconds, an agent clicks where the menu was yesterday and says done, while Dunn the bobblehead nods and the list never moves. Desktop Tasks names the finish line before the first click, reads the screen two ways and acts when they agree, then looks again for proof. When a success shows no visible change, it looks twice at most, then stops and tells you. Captions are on the player; a transcript is below.",
     "note": "The task app and its list are a fictional example. The film shows how the skill behaves; it does not report results."
-  }
+  },
+  "repository_aliases": [
+    "https://github.com/michaeljabbour/amplifier-skill-desktop-tasks"
+  ]
 }

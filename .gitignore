@@ -14,3 +14,4 @@ build/
 *.dylib
 
 _site/
+.research/

@@ -75,3 +75,18 @@ class TestGetBackend:
     def test_unknown_name_raises(self):
         with pytest.raises(ValueError, match="Unknown backend"):
             get_backend("quantum_computer")
+
+
+class TestExplicitSimulationEnvironment:
+    def test_env_flag_explicitly_requests_fixture(self, monkeypatch):
+        monkeypatch.setenv("AMPLIFIER_CUA_BACKEND", "fixture")
+        with patch("amplifier_module_tool_cua.backends.registry.sys") as mock_sys:
+            mock_sys.platform = "freebsd"
+            assert detect_backend().platform == "fixture"
+
+    def test_other_env_values_do_not_enable_fixture(self, monkeypatch):
+        monkeypatch.setenv("AMPLIFIER_CUA_BACKEND", "yes-please")
+        with patch("amplifier_module_tool_cua.backends.registry.sys") as mock_sys:
+            mock_sys.platform = "freebsd"
+            with pytest.raises(RuntimeError, match="fixture"):
+                detect_backend()

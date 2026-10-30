@@ -62,6 +62,11 @@ class FixtureBackend:
         return "fixture"
 
     @property
+    def simulated(self) -> bool:
+        """True: nothing here touches a real desktop."""
+        return True
+
+    @property
     def capabilities(self) -> dict[str, bool]:
         return {
             "screenshot": True,

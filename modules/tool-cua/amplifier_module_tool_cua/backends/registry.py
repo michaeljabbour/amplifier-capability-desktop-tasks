@@ -5,24 +5,41 @@ Selects the best backend for the current platform or by explicit name.
 
 from __future__ import annotations
 
+import os
 import sys
 
 from ..target import Target
+
+
+class BackendUnavailableError(RuntimeError):
+    """A native backend could not initialize; simulation was not requested."""
+
+
+FIXTURE_ENV_VAR = "AMPLIFIER_CUA_BACKEND"
+
+
+def _fixture_requested() -> bool:
+    return os.environ.get(FIXTURE_ENV_VAR, "").strip().lower() == "fixture"
 
 
 def detect_backend() -> Target:
     """Auto-detect and return the appropriate backend for the current platform.
 
     Raises RuntimeError if the platform backend cannot be initialized.
-    Use get_backend("fixture") or set ``backend: fixture`` explicitly for CI/testing.
+    Use get_backend("fixture"), ``backend: fixture`` or
+    ``AMPLIFIER_CUA_BACKEND=fixture`` explicitly for CI/testing.
     """
+    if _fixture_requested():
+        from .fixture import FixtureBackend
+
+        return FixtureBackend()
     if sys.platform == "darwin":
         try:
             from .macos import MacOSBackend
 
             backend = MacOSBackend()
         except Exception as exc:
-            raise RuntimeError(
+            raise BackendUnavailableError(
                 "macOS backend could not be initialized. "
                 "Install the required dependencies:\n\n"
                 "  python -m pip install"
@@ -33,7 +50,7 @@ def detect_backend() -> Target:
                 "For CI or testing without a real desktop, set backend: fixture explicitly."
             ) from exc
         if not backend._available:
-            raise RuntimeError(
+            raise BackendUnavailableError(
                 "macOS backend is not available. Quartz/pyobjc may be missing or"
                 " Accessibility permission has not been granted.\n\n"
                 "Install the required dependencies:\n\n"
@@ -54,7 +71,7 @@ def detect_backend() -> Target:
 
         return LinuxStubBackend()
     else:
-        raise RuntimeError(
+        raise BackendUnavailableError(
             f"No backend is available for platform {sys.platform!r}. "
             "For CI or testing without a real desktop, set backend: fixture explicitly."
         )
