@@ -60,3 +60,7 @@ Amplifier integration. It keeps the original bundle structure, development
 commands, fixture smoke test and backend troubleshooting together. Native setup
 requires a compatible Amplifier host and the dependencies and OS permissions for
 the selected backend. A fixture test does not operate a real desktop.
+
+## Repository migration
+
+This repository was renamed from `amplifier-skill-desktop-tasks` to `amplifier-capability-desktop-tasks`. Existing installed method names, bundle aliases and native interfaces stay the same. See the [migration guide](https://michaeljabbour.github.io/migration/) and [repository map](https://michaeljabbour.github.io/migration/mapping.json) for source URL updates.
