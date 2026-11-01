@@ -22,7 +22,7 @@ check action plumbing; they do not establish live desktop acceptance.
 Amplifier bundle for computer-use automation — universal desktop control, semantic UI understanding, and safe bounded operation.
 
 **Bundle namespace:** `cua`  
-**Git source:** `git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@main`
+**Git source:** `git+https://github.com/michaeljabbour/amplifier-capability-desktop-tasks@main`
 
 ---
 
@@ -69,8 +69,8 @@ Requires [uv](https://docs.astral.sh/uv/) and Python ≥ 3.11.
 
 ```bash
 # Clone the repo
-git clone https://github.com/michaeljabbour/amplifier-skill-desktop-tasks
-cd amplifier-skill-desktop-tasks
+git clone https://github.com/michaeljabbour/amplifier-capability-desktop-tasks
+cd amplifier-capability-desktop-tasks
 
 # Install all dev dependencies (workspace-aware)
 uv sync --group dev
@@ -165,7 +165,7 @@ amplifier run --bundle "file://$REPO" ...
 Once the bundle is pushed to GitHub, you can load it directly:
 
 ```bash
-amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@main ...
+amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-capability-desktop-tasks@main ...
 ```
 
 Use the same `.amplifier/settings.local.yaml` from the section above to activate the fixture backend:
@@ -208,7 +208,7 @@ If `uv sync` cannot resolve `tool-cua`, verify that `modules/tool-cua/pyproject.
 Append `@<branch-or-sha>` to the git URL:
 
 ```bash
-amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-skill-desktop-tasks@my-branch ...
+amplifier run --bundle git+https://github.com/michaeljabbour/amplifier-capability-desktop-tasks@my-branch ...
 ```
 
 ---

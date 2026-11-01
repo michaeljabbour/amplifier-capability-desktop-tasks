@@ -2,11 +2,11 @@
 
 Finish the task. Check the screen that proves it.
 
-Watch the [72-second film](https://michaeljabbour.github.io/amplifier-skill-desktop-tasks/#film): an agent that reports done while the screen never changed, and how the skill checks the screen that proves it. The example in it is fictional.
+Watch the [72-second film](https://michaeljabbour.github.io/amplifier-capability-desktop-tasks/#film): an agent that reports done while the screen never changed, and how the skill checks the screen that proves it. The example in it is fictional.
 
 For people asking an agent to work in desktop apps. Desktop Tasks makes the agent use observed controls, stay within a clear action budget and verify the final state before calling the work complete.
 
-[Explore the site](https://michaeljabbour.github.io/amplifier-skill-desktop-tasks/)
+[Explore the site](https://michaeljabbour.github.io/amplifier-capability-desktop-tasks/)
 
 ## What you get
 
@@ -17,8 +17,8 @@ For people asking an agent to work in desktop apps. Desktop Tasks makes the agen
 ## Start here
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-desktop-tasks.git
-cd amplifier-skill-desktop-tasks
+git clone https://github.com/michaeljabbour/amplifier-capability-desktop-tasks.git
+cd amplifier-capability-desktop-tasks
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
 
