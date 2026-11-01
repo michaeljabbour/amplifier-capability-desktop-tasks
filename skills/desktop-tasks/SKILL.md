@@ -14,3 +14,7 @@ Operate: read references/dual-world-reasoning.md and references/action-confidenc
 Recover: read references/recovery-patterns.md only when needed. A success return without the expected post-state is ambiguous. Re-observe at most twice for one uncertain step, then stop or use an evidenced alternative. Do not repeat a consequential submission merely because its response was unclear.
 
 Record what was observed, attempted and verified. A fixture pass proves backend plumbing only. The retained native modules/tool-cua contains real platform backends and a deterministic FixtureBackend; installation of that optional adapter does not demonstrate live OS permission or physical task acceptance.
+
+## Optional coaching checkpoint
+
+Read [the local coaching guide](references/coaching-session.v1.md) only when the person asks for practice or optional session bookkeeping. Keep native operations direct and unattended; the guide adds only a separate opt-in pre/post review.
